@@ -8,5 +8,10 @@ export const routes: Routes = [
     {
         path:'formulario',
         loadChildren:()=> import('./formulario/ejemplo1/formulario.routes')
+    },
+
+    {
+        path:'resistencia',
+        loadChildren:()=> import('./formulario/resistencias/resistencias.routes')
     }
 ];

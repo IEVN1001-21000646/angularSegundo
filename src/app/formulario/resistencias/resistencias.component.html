@@ -1,0 +1,81 @@
+<div class="container mx-auto p-6 bg-gray-100 rounded-lg shadow-lg">
+  <h2 class="text-3xl font-bold text-center text-gray-800 mb-6">Selecciona la resistencia</h2>
+
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="max-w-sm mx-auto">
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="form-group">
+        <label for="color1" class="block text-gray-700 font-medium mb-2">Primera Banda:</label>
+        <select id="color1" formControlName="color1" class="form-control block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+          <option *ngFor="let color of colores" [value]="color.valor">{{ color.nombre }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="color2" class="block text-gray-700 font-medium mb-2">Segunda Banda:</label>
+        <select id="color2" formControlName="color2" class="form-control block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+          <option *ngFor="let color of colores" [value]="color.valor">{{ color.nombre }}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="color3" class="block text-gray-700 font-medium mb-2">Tercera Banda:</label>
+        <select id="color3" formControlName="color3" class="form-control block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+          <option *ngFor="let color of colores" [value]="color.valor">{{ color.nombre }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group mt-4">
+      <label class="block text-gray-700 font-medium mb-2">Tolerancia:</label>
+      <div class="flex items-center space-x-4">
+        <div class="radio-group flex items-center">
+          <input type="radio" id="oro" formControlName="tolerancia" [value]="5" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300">
+          <label for="oro" class="ml-2 text-gray-700">Oro 5%</label>
+        </div>
+        <div class="radio-group flex items-center">
+          <input type="radio" id="plata" formControlName="tolerancia" [value]="10" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300">
+          <label for="plata" class="ml-2 text-gray-700">Plata 10%</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-between space-x-4 mt-6">
+      <button type="submit" class="btn bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md">Registrar</button>
+      <button type="button" class="btn bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-md" (click)="subImprime()">Imprimir</button>
+    </div>
+  </form>
+
+  <h3 class="text-xl font-semibold text-gray-800 mt-8 mb-4">Resistencias Registradas</h3>
+
+  <table class="table-auto w-full bg-gray-800 text-white rounded-lg shadow-md">
+    <thead class="bg-gray-700">
+      <tr>
+        <th class="px-4 py-2">Color 1</th>
+        <th class="px-4 py-2">Color 2</th>
+        <th class="px-4 py-2">Color 3</th>
+        <th class="px-4 py-2">Tolerancia</th>
+        <th class="px-4 py-2">Valor</th>
+        <th class="px-4 py-2">Valor Máximo</th>
+        <th class="px-4 py-2">Valor Mínimo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let resistencia of resistencias" class="bg-gray-600 odd:bg-gray-700">
+      
+        <td class="px-4 py-2" [ngStyle]="{'background-color': getColor(resistencia.color1)}">{{ getNombreColor(resistencia.color1) }}</td>
+        <td class="px-4 py-2" [ngStyle]="{'background-color': getColor(resistencia.color2)}">{{ getNombreColor(resistencia.color2) }}</td>
+        <td class="px-4 py-2" [ngStyle]="{'background-color': getColor(resistencia.color3)}">{{ getNombreColor(resistencia.color3) }}</td>
+
+        <td class="px-4 py-2" [ngStyle]="{'background-color': getClassTolerancia(resistencia.tolerancia)}">
+          {{ resistencia.tolerancia }}%
+        </td>
+        
+        <td class="px-4 py-2">{{ calcularValorResistencia(resistencia).valor }}</td>
+        <td class="px-4 py-2">{{ calcularValorResistencia(resistencia).valorMaximo }}</td>
+        <td class="px-4 py-2">{{ calcularValorResistencia(resistencia).valorMinimo }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
