@@ -1,0 +1,22 @@
+<div class="ventas-dia">
+  <h3>Ventas del Día</h3>
+
+  <input placeholder="Fecha (dd/mm/yyyy)" [(ngModel)]="fechaSeleccionada" type="date" />
+  <button (click)="mostrarVentasPorDia()">Mostrar Ventas del Día</button>
+
+  <input placeholder="Mes (yyyy-mm)" [(ngModel)]="mesSeleccionado" type="month" />
+  <button (click)="mostrarVentasPorMes()">Mostrar Ventas del Mes</button>
+
+  <div *ngIf="pedidosDia.length > 0">
+    <h4>Pedidos</h4>
+    <ul>
+      <li *ngFor="let pedido of pedidosDia">
+        {{ pedido.nombreCliente }} - Total: ${{ pedido.total }}
+      </li>
+    </ul>
+    <h4>Ventas Totales: ${{ ventasTotalesDia }}</h4>
+  </div>
+  <div *ngIf="pedidosDia.length === 0">
+    <p>No hay ventas registradas para la fecha o mes seleccionados.</p>
+  </div>
+</div>

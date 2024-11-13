@@ -1,0 +1,23 @@
+<div class="detalle-pedido">
+  <h3>Detalle del Pedido</h3>
+  
+  <table>
+    <tr>
+      <th>Tamaño</th>
+      <th>Ingredientes</th>
+      <th>Cantidad</th>
+      <th>Subtotal</th>
+      <th>Acciones</th>
+    </tr>
+    <tr *ngFor="let pizza of pedidoService.pizzas$ | async">
+      <td>{{ pizza.size }}</td>
+      <td>{{ pizza.ingredients.join(', ') }}</td>
+      <td>{{ pizza.quantity }}</td>
+      <td>{{ pizza.subtotal }}</td>
+      <td><button (click)="quitarPizza(pizza)">Quitar</button></td>
+    </tr>
+  </table>
+
+  <h4>Total del Pedido: ${{ totalPedido }}</h4>
+  <button (click)="finalizarPedido()">Finalizar Pedido</button>
+</div>

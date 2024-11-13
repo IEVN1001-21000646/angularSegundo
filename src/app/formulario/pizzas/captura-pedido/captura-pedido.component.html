@@ -1,0 +1,22 @@
+<div class="captura-pedido">
+    <h3>Captura de Pedido</h3>
+    
+    <input placeholder="Nombre completo" [(ngModel)]="nombreCliente" />
+    <input placeholder="Dirección" [(ngModel)]="direccion" />
+    <input placeholder="Teléfono" [(ngModel)]="telefono" />
+    <input placeholder="Fecha de compra" [(ngModel)]="fechaCompra" type="date" />
+  
+    <h4>Tamaño de Pizza</h4>
+    <label><input type="radio" [(ngModel)]="tamanoPizza" value="Chica" /> Chica $40</label>
+    <label><input type="radio" [(ngModel)]="tamanoPizza" value="Mediana" /> Mediana $80</label>
+    <label><input type="radio" [(ngModel)]="tamanoPizza" value="Grande" /> Grande $120</label>
+  
+    <h4>Ingredientes</h4>
+    <label><input type="checkbox" [(ngModel)]="ingredientes.jamon" /> Jamón $10</label>
+    <label><input type="checkbox" [(ngModel)]="ingredientes.pina" /> Piña $10</label>
+    <label><input type="checkbox" [(ngModel)]="ingredientes.champinones" /> Champiñones $10</label>
+  
+    <input placeholder="Número de Pizzas" [(ngModel)]="cantidadPizzas" type="number" />
+    <button (click)="agregarPizza()">Agregar Pizza</button>
+  </div>
+  
